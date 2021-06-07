@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+		"moduleResolution": "node",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+		"noImplicitAny": true,
+		"module": "commonjs",
+    "target": "esnext",
+		"sourceMap": true,
+		"allowJs": false,
+		"baseUrl": ".",
+		"typeRoots": [
+			"node_modules/@types",
+			"src/@types"
+		],
+		"paths": {
+			"@config/*": ["src/config/*"],
+			"@database/*": ["src/database/*"],
+			"@routes/*": ["src/services/routes/*"],
+			"@test/*": ["src/__test__/*"],
+			"@src/*": ["src/*"]
+		}
+  },
+  "include": [
+    "src/**/*.ts",
+		"ormconfig.ts",
+		"jest.config.ts"
+  ]
+}

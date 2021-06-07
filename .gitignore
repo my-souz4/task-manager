@@ -1,0 +1,4 @@
+src/__test__/coverage
+node_modules
+.env.dev
+.env
