@@ -1,5 +1,6 @@
-import { app } from '@src/app'
 import request from 'supertest'
+
+import { app } from '@src/app'
 
 describe('Server', () => {
 	it('checks if the server is receiving the requests', async () => {

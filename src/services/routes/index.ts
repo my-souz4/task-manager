@@ -1,11 +1,12 @@
+import { routes as routesTasks } from '@routes/tasks'
+import { App } from '@src/app/index'
 import { Router } from 'express'
 
 const routes = Router()
+const app = new App()
 
-routes.get('/', (_req, res) => {
-	return res.status(200).json({
-		message: 'It Works!'
-	})
-})
+routes.get('/', app.index)
+
+routes.use('/tasks', routesTasks)
 
 export { routes }
