@@ -3,6 +3,7 @@ import '@database/index'
 
 import express from 'express'
 import cors from 'cors'
+
 import { corsConfig } from '@config/cors'
 import { routes } from '@routes/index'
 

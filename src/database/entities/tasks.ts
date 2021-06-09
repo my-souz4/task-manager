@@ -31,26 +31,32 @@ class Tasks {
 	status: string
 
 	@CreateDateColumn()
-	created_at: Date
+	createdAt: Date
 
 	@UpdateDateColumn()
-	updated_at: Date
+	updatedAt: Date
 
-	constructor(props: Omit<Tasks, 'id'>, id?: string) {
+	constructor(
+		props: Omit<Tasks, 'id'>,
+		id?: string,
+		category?: 'DELETE' | 'DELEGATE' | 'DECIDE' | 'DO'
+	) {
 		Object.assign(this, props)
 
 		if (!id) {
 			this.id = v4()
 		}
 
-		if (this.important <= 5 && this.urgent <= 5) {
-			this.category = 'DELETE'
-		} else if (this.important <= 5 && this.urgent >= 6) {
-			this.category = 'DELEGATE'
-		} else if (this.important >= 6 && this.urgent <= 5) {
-			this.category = 'DECIDE'
-		} else if (this.important >= 6 && this.urgent >= 6) {
-			this.category = 'DO'
+		if (!category) {
+			if (this.important <= 5 && this.urgent <= 5) {
+				this.category = 'DELETE'
+			} else if (this.important <= 5 && this.urgent >= 6) {
+				this.category = 'DELEGATE'
+			} else if (this.important >= 6 && this.urgent <= 5) {
+				this.category = 'DECIDE'
+			} else if (this.important >= 6 && this.urgent >= 6) {
+				this.category = 'DO'
+			}
 		}
 	}
 }
