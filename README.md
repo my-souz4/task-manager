@@ -14,7 +14,7 @@ This is a task manager with Eisenhower matrix. Learn more about the Eisenhower m
 
 ## How to use
 
-[This file]() has all the routes to query the paths, parameters and types of requests for each one.
+[This file](https://github.com/my-souz4/task-manager/blob/master/src/services/routes/routes.docs.json) has all the routes to query the paths, parameters and types of requests for each one.
 
 ## License
 
