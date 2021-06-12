@@ -1,0 +1,14 @@
+{
+	"routes": [
+		{
+			"path": "/tasks/new",
+			"type": "POST",
+			"body": {
+				"title": "string",
+				"description": "string",
+				"urgent": "integer",
+				"important": "integer"
+			}
+		}
+	]	
+}

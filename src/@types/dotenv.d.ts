@@ -4,7 +4,7 @@ declare module 'dotenv' {
 	export interface DotenvParseOutput {
 		PORT: number
 
-		DB_TYPE: 'mysql' | 'sqlite'
+		DB_TYPE: 'mysql' | 'sqlite' | 'oracledb' | 'postgres'
 		DB_HOST: string
 		DB_PORT: number
 		DB_USERNAME: string
