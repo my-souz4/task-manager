@@ -1,3 +1,4 @@
+import { INewTasksData } from '@src/app/tasks/interfaces'
 import {
 	Column,
 	CreateDateColumn,
@@ -27,36 +28,20 @@ class Tasks {
 	@Column()
 	category: string
 
-	@Column()
+	@Column({ default: 'DO' })
 	status: string
 
-	@CreateDateColumn()
+	@CreateDateColumn({ name: 'created_at' })
 	createdAt: Date
 
-	@UpdateDateColumn()
+	@UpdateDateColumn({ name: 'updated_at' })
 	updatedAt: Date
 
-	constructor(
-		props: Omit<Tasks, 'id'>,
-		id?: string,
-		category?: 'DELETE' | 'DELEGATE' | 'DECIDE' | 'DO'
-	) {
+	constructor(props: Omit<INewTasksData, 'id'>, id?: string) {
 		Object.assign(this, props)
 
 		if (!id) {
 			this.id = v4()
-		}
-
-		if (!category) {
-			if (this.important <= 5 && this.urgent <= 5) {
-				this.category = 'DELETE'
-			} else if (this.important <= 5 && this.urgent >= 6) {
-				this.category = 'DELEGATE'
-			} else if (this.important >= 6 && this.urgent <= 5) {
-				this.category = 'DECIDE'
-			} else if (this.important >= 6 && this.urgent >= 6) {
-				this.category = 'DO'
-			}
 		}
 	}
 }

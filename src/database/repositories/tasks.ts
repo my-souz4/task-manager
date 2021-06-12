@@ -1,7 +1,38 @@
 import { Tasks } from '@database/entities/tasks'
-import { EntityRepository } from 'typeorm'
+import { INewTasksData, ITasksRepository } from '@src/app/tasks/interfaces'
+import { EntityRepository, Repository } from 'typeorm'
+
+const category = (
+	important: number,
+	urgent: number
+): 'DELETE' | 'DELEGATE' | 'DECIDE' | 'DO' => {
+	const category =
+		important <= 5 && urgent <= 5
+			? 'DELETE'
+			: important <= 5 && urgent >= 6
+			? 'DELEGATE'
+			: important >= 6 && urgent <= 5
+			? 'DECIDE'
+			: 'DO'
+
+	return category
+}
 
 @EntityRepository(Tasks)
-class TasksRepository {}
+class TasksRepository extends Repository<Tasks> implements ITasksRepository {
+	new = async ({ title, description, important, urgent }: INewTasksData) => {
+		const tasks = this.create({
+			title,
+			description,
+			important,
+			urgent,
+			category: category(important, urgent)
+		})
 
-export { TasksRepository }
+		await this.save(tasks)
+
+		return tasks
+	}
+}
+
+export { category, TasksRepository }

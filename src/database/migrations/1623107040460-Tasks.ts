@@ -33,7 +33,8 @@ export class Tasks1623107040460 implements MigrationInterface {
 					},
 					{
 						name: 'status',
-						type: 'varchar'
+						type: 'varchar',
+						default: "'DO'"
 					},
 					{
 						name: 'created_at',

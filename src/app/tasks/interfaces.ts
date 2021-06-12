@@ -1,3 +1,5 @@
+import { Tasks } from '@database/entities/tasks'
+
 export interface ITasksData {
 	id: string
 	title: string
@@ -10,5 +12,9 @@ export interface ITasksData {
 	updatedAt: Date
 }
 
+export interface ITasksRepository {
+	new: (props: INewTasksData) => Promise<Tasks>
+}
+
 export interface INewTasksData
-	extends Omit<ITasksData, 'id' | 'createdAt' | 'updatedAt' | 'category'> {}
+	extends Omit<ITasksData, 'id' | 'createdAt' | 'updatedAt' | 'category' | 'status'> {}
