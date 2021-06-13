@@ -1,0 +1,21 @@
+{
+	"routes": [
+		{
+			"path": "/tasks/new",
+			"type": "POST",
+			"description": "Create a new task and define a category using Eisenhower matrix with urgency and importance data sent",
+			"body": {
+				"title": "string",
+				"description": "string",
+				"urgent": "integer",
+				"important": "integer"
+			}
+		},
+		{
+			"path": "/tasks/all",
+			"description": "Returns an array of all tasks registered in the database",
+			"type": "GET",
+			"body": "NO BODY"
+		}
+	]	
+}

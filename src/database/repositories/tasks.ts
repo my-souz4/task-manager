@@ -1,6 +1,6 @@
 import { Tasks } from '@database/entities/tasks'
 import { INewTasksData, ITasksRepository } from '@src/app/tasks/interfaces'
-import { EntityRepository, Repository } from 'typeorm'
+import { EntityRepository, ObjectType, Repository } from 'typeorm'
 
 const category = (
 	important: number,
@@ -33,6 +33,14 @@ class TasksRepository extends Repository<Tasks> implements ITasksRepository {
 
 		return tasks
 	}
+
+	all = async () => {
+		const tasks = await this.find()
+
+		return tasks
+	}
 }
 
-export { category, TasksRepository }
+const TasksRepo: ObjectType<ITasksRepository> = TasksRepository
+
+export { category, TasksRepo }

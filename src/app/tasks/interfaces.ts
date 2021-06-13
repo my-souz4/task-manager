@@ -14,6 +14,7 @@ export interface ITasksData {
 
 export interface ITasksRepository {
 	new: (props: INewTasksData) => Promise<Tasks>
+	all: () => Promise<Tasks[]>
 }
 
 export interface INewTasksData

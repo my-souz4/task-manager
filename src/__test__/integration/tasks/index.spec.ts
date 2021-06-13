@@ -1,13 +1,10 @@
 import request from 'supertest'
-import faker from 'faker'
 
 import { app } from '@src/app'
 import { createConnection, getConnection } from 'typeorm'
-import { INewTasksData } from '@src/app/tasks/interfaces'
+import { Task } from '@test/factories'
 
 describe('Task Manager', () => {
-	const MAX_VALUE = 10
-
 	beforeAll(async () => {
 		await createConnection()
 	})
@@ -18,14 +15,7 @@ describe('Task Manager', () => {
 	})
 
 	it('must be able create a new task', async () => {
-		const object: INewTasksData = {
-			title: faker.lorem.sentences(),
-			description: faker.lorem.paragraph(),
-			important: Math.floor(Math.random() * (MAX_VALUE + 1)),
-			urgent: Math.floor(Math.random() * (MAX_VALUE + 1))
-		}
-
-		const response = await request(app).post('/tasks/new').send(object)
+		const response = await request(app).post('/tasks/new').send(Task())
 
 		expect(response.status).toBe(201)
 		expect(response.body).toHaveProperty('id')
@@ -37,7 +27,16 @@ describe('Task Manager', () => {
 		expect(response.body).toHaveProperty('status')
 		expect(response.body).toHaveProperty('createdAt')
 		expect(response.body).toHaveProperty('updatedAt')
+	})
 
-		expect(response.body.category).toBe('DO')
+	it('must be able get all tasks', async () => {
+		for (let index = 0; index < 9; index++) {
+			await request(app).post('/tasks/new').send(Task())
+		}
+
+		const response = await request(app).get('/tasks/all')
+
+		expect(response.status).toBe(200)
+		expect(response.body).toHaveLength(10)
 	})
 })

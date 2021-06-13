@@ -19,7 +19,8 @@ export default {
 		'!**/interfaces.ts',
 		'!src/database/migrations/**',
 		'!src/config/dotenv.ts',
-		'!src/index.ts'
+		'!src/index.ts',
+		'!src/services/routes/docs.json'
 	],
 	coverageDirectory: 'src/__test__/coverage',
 	bail: true
